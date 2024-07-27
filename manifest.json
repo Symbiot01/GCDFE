@@ -1,0 +1,43 @@
+{
+    "manifest_version": 3,
+    "name": "Google Meet Audio Delay",
+    "version": "1.0",
+    "description": "Introduce a 5-second delay to the outgoing audio in Google Meet.",
+    "permissions": [
+      "activeTab",
+      "scripting",
+      "notifications",
+      "tabCapture"
+    ],
+    "host_permissions": [
+      "*://meet.google.com/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+      }
+    },
+    "icons": {
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://meet.google.com/*"],
+        "js": ["content.js"],
+        "run_at": "document_idle"
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": ["icons/icon48.png", "icons/icon128.png"],
+        "matches": ["https://meet.google.com/*"]
+      }
+    ]
+  }
+  
